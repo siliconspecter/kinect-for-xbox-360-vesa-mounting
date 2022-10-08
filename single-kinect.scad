@@ -47,23 +47,19 @@ difference() {
     };
 
     translate([kinect_screw_x_spacing_mm / 2, kinect_screw_y_spacing_mm / 2, 0]) {
-        cylinder(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm);
-        cylinder(d = kinect_screw_hole_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm + kinect_clip_thickness_mm);
+        screw_hole();
     };
 
     translate([kinect_screw_x_spacing_mm / -2, kinect_screw_y_spacing_mm / 2, 0]) {
-        cylinder(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm);
-        cylinder(d = kinect_screw_hole_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm + kinect_clip_thickness_mm);
+        screw_hole();
     };
 
     translate([kinect_screw_x_spacing_mm / 2, kinect_screw_y_spacing_mm / -2, 0]) {
-        cylinder(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm);
-        cylinder(d = kinect_screw_hole_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm + kinect_clip_thickness_mm);
+        screw_hole();
     };
 
     translate([kinect_screw_x_spacing_mm / -2, kinect_screw_y_spacing_mm / -2, 0]) {
-        cylinder(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm);
-        cylinder(d = kinect_screw_hole_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm + kinect_clip_thickness_mm);
+        screw_hole();
     };
 
     cylinder(
@@ -78,4 +74,33 @@ difference() {
         h = tube_feed_length_mm,
         $fn = tube_sides
     );
+};
+
+module screw_hole() {
+    cylinder(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm - kinect_screw_hole_bridge_height_mm * 2);
+
+    translate([
+      0,
+      0,
+      tube_retainer_length_mm - kinect_screw_hole_bridge_height_mm * 2,
+    ]) {
+        linear_extrude(kinect_screw_hole_bridge_height_mm) {
+            intersection() {
+                circle(d = kinect_screw_head_diameter_mm, $fn = kinect_screw_sides);
+                square([kinect_screw_head_diameter_mm, kinect_screw_hole_diameter_mm], center = true);
+            };
+        };
+    };
+
+    translate([
+      0,
+      0,
+      tube_retainer_length_mm - kinect_screw_hole_bridge_height_mm,
+    ]) {
+        linear_extrude(kinect_screw_hole_bridge_height_mm) {
+          square([kinect_screw_hole_diameter_mm, kinect_screw_hole_diameter_mm], center = true);
+        };
+    };
+
+    cylinder(d = kinect_screw_hole_diameter_mm, $fn = kinect_screw_sides, h = tube_retainer_length_mm + kinect_clip_thickness_mm);
 };

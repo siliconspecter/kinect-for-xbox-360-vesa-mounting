@@ -61,6 +61,9 @@ kinect_screw_hole_diameter_mm = 2.95;
 // to secure the Kinect.
 kinect_screw_sides = 24;
 
+// The height of the internal bridges used to support screw holes.
+kinect_screw_hole_bridge_height_mm = 0.75;
+
 // The distance between the Kinect's front and back screw holes.
 kinect_screw_y_spacing_mm = 19.25;
 
