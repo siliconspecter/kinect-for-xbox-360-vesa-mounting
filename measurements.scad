@@ -73,6 +73,21 @@ kinect_screw_x_spacing_mm = 68.5;
 // The space which must be clear behind a Kinect for cable routing.
 kinect_cable_spacing_mm = 15;
 
+// The VESA mounting.
+////////////////////////////////////////////////////////////////////////////////
+
+// The diameter of the VESA mounting M6 screw's head.
+vesa_screw_head_diameter_mm = 14;
+
+// The diameter of the VESA mounting M6 screw's hole.
+vesa_screw_hole_diameter_mm = 6.5;
+
+// The number of sides of the VESA mounting M6 screw.
+vesa_screw_sides = 72;
+
+// The height of the VESA mounting M6 screw's head.
+vesa_screw_height_height_mm = 4;
+
 // The MALM push-fit bracket.
 ////////////////////////////////////////////////////////////////////////////////
 
