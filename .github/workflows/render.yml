@@ -25,19 +25,19 @@ jobs:
     - run: xvfb-run openscad --hardwarnings --render --o cap.stl cap.scad || exit 1
     - uses: softprops/action-gh-release@v1
       with:
-        files:
-        - lower-vesa.png
-        - lower-vesa.stl
-        - upper-vesa.png
-        - upper-vesa.stl
-        - single-kinect.png
-        - single-kinect.stl
-        - double-kinect.png
-        - double-kinect.stl
-        - splice.png
-        - splice.stl
-        - malm.png
-        - malm.stl
-        - cap.png
-        - cap.stl
+        files: |
+          lower-vesa.png
+          lower-vesa.stl
+          upper-vesa.png
+          upper-vesa.stl
+          single-kinect.png
+          single-kinect.stl
+          double-kinect.png
+          double-kinect.stl
+          splice.png
+          splice.stl
+          malm.png
+          malm.stl
+          cap.png
+          cap.stl
       if: github.event_name == 'release' && github.event.action == 'created'
