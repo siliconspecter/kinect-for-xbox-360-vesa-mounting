@@ -29,9 +29,10 @@ screws.
   them.
 - [splice.scad](./splice.scad) - Use this to splice two sections of 16mm
   diameter tube together.
-- [malm.scad](./malm) - If you don't have the M6 screws to hand or want to
+- [malm.scad](./malm.scad) - If you don't have the M6 screws to hand or want to
   instead mount the Kinect to a desk similar to the Ikea MALM, this will work in
   a pinch, though as it's just a push fit with one point of contact it might be
   a bit wobbly!
+- [cap.scad](./cap.scad) - An end cap for the 16mm diameter tube.
 
 Adios, René.
