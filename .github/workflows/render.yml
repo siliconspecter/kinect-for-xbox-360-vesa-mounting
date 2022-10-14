@@ -1,0 +1,43 @@
+on:
+  push:
+  release:
+    types: [created]
+
+jobs:
+  render:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: sudo apt-get install openscad -y
+    - run: xvfb-run openscad --hardwarnings --render --o lower-vesa.png lower-vesa.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o lower-vesa.stl lower-vesa.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o upper-vesa.png upper-vesa.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o upper-vesa.stl upper-vesa.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o single-kinect.png single-kinect.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o single-kinect.stl single-kinect.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o double-kinect.png double-kinect.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o double-kinect.stl double-kinect.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o splice.png splice.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o splice.stl splice.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o malm.png malm.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o malm.stl malm.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o cap.png cap.scad || exit 1
+    - run: xvfb-run openscad --hardwarnings --render --o cap.stl cap.scad || exit 1
+    - uses: softprops/action-gh-release@v1
+      with:
+        files:
+        - lower-vesa.png
+        - lower-vesa.stl
+        - upper-vesa.png
+        - upper-vesa.stl
+        - single-kinect.png
+        - single-kinect.stl
+        - double-kinect.png
+        - double-kinect.stl
+        - splice.png
+        - splice.stl
+        - malm.png
+        - malm.stl
+        - cap.png
+        - cap.stl
+      if: github.event_name == 'release' && github.event.action == 'created'
